@@ -7,6 +7,7 @@
 
 (export '(*lotzo-modules*
           *nick*
+          load-rc-file
           main-loop
 
           register-parser

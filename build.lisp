@@ -24,8 +24,9 @@
   (dolist (f *files*)
     (load (compile-file f)))
   (ext:saveinitmem "lotzo" :init-function (lambda ()
-                                             (lotzo:main-loop)
-                                             (ext:quit))
+                                            (lotzo:load-rc-file)
+                                            (lotzo:main-loop)
+                                            (ext:quit))
                             :executable t
                             :keep-global-handlers t
                             :norc t

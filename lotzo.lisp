@@ -140,11 +140,16 @@
   (send (concatenate 'string "NICK " *nick*) *irc-socket*)
   (format t "Connected~%"))
 
+(defun load-rc-file ()
+  "Load rc file"
+  (let ((rc (probe-file (merge-pathnames (user-homedir-pathname)
+                                          #p".lotzorc"))))
+    (when rc
+      (load rc))))
+
 (defun main-loop ()
   "Main program loop read and eval input from irc calling
    the appropriate registered parsers"
-  (when *rc-file*
-               (load *rc-file*))
   (loop while t
         do (progn (if *connected*
                       (progn (read-input *irc-socket*)
