@@ -8,6 +8,9 @@
 (export '(*lotzo-modules*
           *nick*
           load-rc-file
+          suspend
+          resume
+          stop
           main-loop
 
           register-parser

@@ -142,10 +142,19 @@
     (when rc
       (load rc))))
 
+(defvar *lotzo-running* t)
+(defun suspend ()
+  (setf *lotzo-running* nil))
+(defun resume ()
+  (setf *lotzo-running* t)
+  (main-loop))
+(defun stop ()
+  (quit-irc)
+  (suspend))
 (defun main-loop ()
   "Main program loop read and eval input from irc calling
    the appropriate registered parsers"
-  (loop while t
+  (loop while *lotzo-running*
         do (progn (if *connected*
                       (progn (read-input *irc-socket*)
                              (eval-input))
