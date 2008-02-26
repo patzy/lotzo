@@ -1,10 +1,5 @@
-(load "package.lisp")
-
-(defparameter *files* '("utils.lisp"
-                        "net.lisp"
-                        "irc.lisp"
-                        "modules.lisp"
-                        "lotzo.lisp"))
+(load "asdf.lisp")
+(asdf:operate 'asdf:load-op :lotzo)
 
 (defparameter *doc*
   "Lotzo is an IRC bot written entirely in Common LISP.")
@@ -16,13 +11,9 @@
   (delete-file "lotzo"))
 
 (defun run ()
-  (dolist (f *files*)
-    (load (compile-file f)))
   (lotzo:main-loop))
 
 (defun make-lotzo ()
-  (dolist (f *files*)
-    (load (compile-file f)))
   (ext:saveinitmem "lotzo" :init-function (lambda ()
                                             (lotzo:load-rc-file)
                                             (lotzo:main-loop)
