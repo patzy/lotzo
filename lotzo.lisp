@@ -1,12 +1,3 @@
-;;;;;;;;;;;;;;;;;;;;;;
-;;Lotzo bot framework
-;;;;;;;;;;;;;;;;;;;;;;
-
-;;TODO: improve module system so we can load, unload and reload modules
-;;TODO: maybe remove the package stuff for modules
-;;TODO: change modules spec to allow init and shutdown of modules
-;;TODO: at specific time
-;;TODO: change the rc-file stuff
 (in-package :lotzo)
 
 
@@ -20,9 +11,9 @@
 (defvar *rc-file* "~/.lotzorc")
 
 (defvar *channels* '("#lotzo"))
-(defvar *servers* '("eu.undernet.org"))
+(defvar *servers* '("irc.freenode.net"))
 (defvar *port* 6667)
-(defvar *nick* "Lotzo")
+(defvar *nick* "LotzoBeta")
 
 (defvar *channel-join-msg* "Hello")
 
@@ -69,25 +60,26 @@
   (format t "Parsing 372 command~%")
   (format t "MOTD: ~A~%" trailing))
 
-;;FIXME: this is called every time somebody join
 (defparser "JOIN"
-  (when (and (member middle *channels* :test #'equal)
-             (equal *nick* (subseq prefix 1 (position #\! prefix))))
-    (format t "Joined ~A~%" middle)
-    (say middle *channel-join-msg*)))
+  (let ((channel (subseq middle 1 (length middle)))
+        (nick (subseq prefix 1 (position #\! prefix))))
+    (when (equal *nick* nick)
+      (format t "I have joined ~A~%" middle)
+      (say channel *channel-join-msg*))))
 
 ;;parse an irc string into its three
 ;;parts
 (defun parse-irc (string)
   ;;prefix(optional) command middle trailing(optional)
-  (let ((splited-msg (split-string *reply* #\Space)))
-    (if (equal (char (first splited-msg) 0) #\:);try to find a prefix
-        (setq prefix (first splited-msg)))
-    (setq command (second splited-msg))         ;then the command
-    (setq middle (third splited-msg))           ;then middle
-    (setq trailing (cdddr splited-msg))         ;and the trailing part
-    (setq nick (subseq prefix 1
-                       (position #\! prefix)))  ;nick who send the message
+  (let* ((splited-msg (split-string *reply* #\Space))
+         (prefix (when (equal (char (first splited-msg) 0) #\:)
+                   (first splited-msg)))
+         (command (second splited-msg))
+         (middle (third splited-msg))
+         (trailing (cdddr splited-msg))
+         (nick (when prefix
+                 (subseq prefix 1
+                         (position #\! prefix)))))
     (format t "Prefix:~S~%" prefix)
     (format t "Command:~S~%" command)
     (format t "Middle:~S~%" middle)
@@ -106,13 +98,16 @@
                                         ;(format t "Received:~S~%" *reply*))
 
 (defun eval-input ()
+  (format t "irc input: ~A~%" *reply*)
   (setq splited-input (split-string *reply* #\Space))
   (cond ((string-equal (first splited-input) "NOTICE") ;;NOTICE
-         (format t "~S~%" *reply*))
+         (format t "NOTICE: ~S~%" *reply*))
 
         ((string-equal (first splited-input) "PING") ;;PING?PONG!
          (format t "PING? PONG!~%")
-         (send (concatenate 'string "PONG " (string (second splited-input))) *irc-socket*))
+         (send (concatenate 'string "PONG "
+                            (string (second splited-input)))
+               *irc-socket*))
 
 
         ((string-equal (first splited-input) "ERROR") ;;ERROR
