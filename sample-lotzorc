@@ -3,35 +3,27 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (in-package :lotzo)
 
-;;Used modules 
-(use-module :keywords)
-(use-module :commands)
-(use-module :motd)
-(use-module :notes)
-(use-module :announces)
-;;(use-module :log)
-;;(use-module :htaccess)
 
 
-;; ;;global parameters
-;; (setf *servers* '("Montreal.QC.CA.Undernet.org"
-;;                   "Amsterdam.NL.EU.undernet.org"
-;;                   "Amsterdam2.NL.EU.undernet.org"
-;;                   "bucharest.ro.eu.undernet.org"
-;;                   "Carouge.CH.EU.Undernet.org"
-;;                   "Diemen.NL.EU.Undernet.Org"
-;;                   "Ede.NL.EU.UnderNet.Org"
-;;                   "Elsene.Be.Eu.undernet.org"
-;;                   "graz.at.Eu.UnderNet.org"
-;;                   "Helsinki.FI.EU.Undernet.org"
-;;                   "Lelystad.NL.EU.UnderNet.Org"
-;;                   "London2.UK.EU.Undernet.Org"
-;;                   "Oslo2.NO.EU.undernet.org"
-;;                   "Zagreb.Hr.EU.UnderNet.org"
-;;                   "mesa.az.us.undernet.org"
-;;                   "newyork.ny.us.undernet.org"
-;;                   "sanjose.ca.us.undernet.org"
-;;                   "Sterling.VA.US.UnderNet.org"))
+;;global parameters
+(setf *servers* '("Montreal.QC.CA.Undernet.org"
+                  "Amsterdam.NL.EU.undernet.org"
+                  "Amsterdam2.NL.EU.undernet.org"
+                  "bucharest.ro.eu.undernet.org"
+                  "Carouge.CH.EU.Undernet.org"
+                  "Diemen.NL.EU.Undernet.Org"
+                  "Ede.NL.EU.UnderNet.Org"
+                  "Elsene.Be.Eu.undernet.org"
+                  "graz.at.Eu.UnderNet.org"
+                  "Helsinki.FI.EU.Undernet.org"
+                  "Lelystad.NL.EU.UnderNet.Org"
+                  "London2.UK.EU.Undernet.Org"
+                  "Oslo2.NO.EU.undernet.org"
+                  "Zagreb.Hr.EU.UnderNet.org"
+                  "mesa.az.us.undernet.org"
+                  "newyork.ny.us.undernet.org"
+                  "sanjose.ca.us.undernet.org"
+                  "Sterling.VA.US.UnderNet.org"))
 (setf *servers* '("irc.freenode.net"))
 (setf *nick* "Lotzo")
 (setf *channels* '("#stumpwm"))
@@ -73,11 +65,6 @@
 (add-user "mirak" 4)
 (set-auto-voice "mirak")
 
-;user information
-;; (add-user-info "Patzy")
-;; (set-user-mail "Patzy" "patzy@laposte.net")
-;; (set-user-web "Patzy" "http://www.enib.fr/~veyret")
-;; (set-user-birthdate "Patzy" "21-08-1981")
 
 ;help messages
 (defhelpmsg "torrent"

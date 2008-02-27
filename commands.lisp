@@ -16,11 +16,14 @@
 ;;FIXME: user level
 (defcommand  "eval" (:min-level 5
                      :help-msg  "Evaluate lisp code online")
-  (say where
-       (format nil "~S"
-               (ignore-errors
-                 (eval (read-from-string
-                        (format nil "~{~A ~}" command-args)))))))
+  (format t "Code to eval: ~{ ~a~}~%" command-args)
+  (let ((eval-result (ignore-errors
+                       (handler-case
+                        (eval (read-from-string
+                               (format nil "~{~A ~}" command-args)))
+                        (error (c)
+                               c)))))
+    (format t "Result: ~A~%" eval-result)))
 
 ;; ;list modules
 ;; (defcommand  "modules"
