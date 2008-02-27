@@ -9,5 +9,8 @@ lotzo:
 run:
 	$(LISP) "(run)"
 
+load:
+	$(LISP)
+
 clean:
 	$(LISP) "(clean-all)"

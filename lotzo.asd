@@ -27,5 +27,24 @@
                                      (:file "command-keyword")
                                      (:file "users")
                                      (:file "help")
-                                     (:file "commands")))))
-
+                                     (:file "commands")))
+               (:module notes
+                        :serial t
+                        :components ((:file "package")
+                                     (:file "notes")))
+               (:module announces
+                        :serial t
+                        :components ((:file "package")
+                                     (:file "announces")))
+               (:module motd
+                        :serial t
+                        :components ((:file "package")
+                                     (:file "motd")))
+               (:module apache
+                        :serial t
+                        :components ((:file "package")
+                                     (:file "htaccess")))
+               (:module logging
+                        :serial t
+                        :components ((:file "package")
+                                     (:file "log")))))

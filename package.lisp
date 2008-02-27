@@ -5,21 +5,16 @@
 
 (in-package :lotzo)
 
-(export '(*lotzo-modules*
-          *nick*
+(export '(*nick*
           load-rc-file
           suspend
           resume
           stop
           main-loop
-
+          ;;parser management
           register-parser
           defparser
-
-          defmodule
-          use-module
-          in-module
-
+          ;;irc commands
           quit-irc
           say
           action
@@ -33,7 +28,10 @@
           users
           join
           topic
-
+          ;;utils
+          split-string
+          format-date-string
+          ;;anaphoric macros
           prefix
           command
           middle

@@ -5,6 +5,7 @@
 
 ;;Defines some irc commands
 ;;FIXME: add missing commands
+;;FIXME: add some sleep into say
 
 (in-package :lotzo)
 
