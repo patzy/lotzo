@@ -3,16 +3,17 @@
 (defvar *log-filename* "log.txt"
   "Output log filename")
 
-(defvar *log-file*
-  (open *log-filename* :direction :output
-                       :if-does-not-exist :create
-                       :if-exists :append))
+(defvar *log-file* nil)
 
 
 ;;TODO: handle multiple channels logging
 
 
 (defun log-begin ()
+  (setf *log-file* (open *log-filename* :direction :output
+                                        :if-does-not-exist :create
+                                        :if-exists :append))
+  (format t "Log stream: ~a~%" *log-file*)
   (format *log-file* (format nil "Started on ~a =============================~%"
                              (format-date-string)))
   (finish-output *log-file*))
@@ -55,6 +56,10 @@
 (defparser "PRIVMSG"
   (let ((nick (subseq prefix 1 (position #\! prefix))))
     (setf (car trailing) (string-left-trim ":" (car trailing)))
+    ;;init logging if required
+    (when (and (null *log-file*)
+               (equal nick *nick*))
+      (log-begin))
     ;;log the message
     (log-irc-message  trailing nick middle)))
 
@@ -86,7 +91,3 @@
   (say where (format nil "~A is actually logging to ~A" *nick* *log-filename*))
   (say where (format nil "=======================")))
 
-
-
-;;Output log start
-(log-begin)

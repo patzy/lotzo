@@ -140,17 +140,25 @@
   (let ((rc (probe-file (merge-pathnames (user-homedir-pathname)
                                           #p".lotzorc"))))
     (when rc
-      (load rc))))
+      (format t "Found rc file ~a~%" rc)
+      (load rc)
+      (format t "Server list: ~a~%" *servers*))))
 
 (defvar *lotzo-running* t)
 (defun suspend ()
+  "Suspend main loop."
   (setf *lotzo-running* nil))
+
 (defun resume ()
+  "Resume main loop."
   (setf *lotzo-running* t)
   (main-loop))
+
 (defun stop ()
+  "Stop the bot."
   (quit-irc)
   (suspend))
+
 (defun main-loop ()
   "Main program loop read and eval input from irc calling
    the appropriate registered parsers"

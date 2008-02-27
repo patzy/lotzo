@@ -21,19 +21,19 @@
 
 
 (defun output-htaccess ()
-  (setf *access-file* (open *access-filename* :direction :output ))
-  (format *access-file* "#Apache access file generated automatically by ~A~%"
+  (let ((htaccess-file (open *htaccess-filename* :direction :output )))
+  (format htaccess-file "#Apache htaccess file generated automatically by ~A~%"
           *nick*)
-  (format *access-file* "Order Deny,Allow~%")
-  (format *access-file* "Deny from all~%")
-  ;;Allow all local access FIXME: this need to be user configurable
-  (format *access-file* "Allow from 192.168.0.0/255.255.255.0~%")
-  (format *access-file* "Allow from 192.168.1.0/255.255.255.0~%")
+  (format htaccess-file "Order Deny,Allow~%")
+  (format htaccess-file "Deny from all~%")
+  ;;Allow all local htaccess FIXME: this need to be user configurable
+  (format htaccess-file "Allow from 192.168.0.0/255.255.255.0~%")
+  (format htaccess-file "Allow from 192.168.1.0/255.255.255.0~%")
   (maphash (lambda (key val)
-             (format *access-file* "Allow from ~A~%" val))
+             (format htaccess-file "Allow from ~A~%" val))
            *addresses*)
-  (finish-output *access-file*)
-  (close *access-file*))
+  (finish-output htaccess-file)
+  (close htaccess-file)))
 
 
 ;; Add joining users to allowed people
