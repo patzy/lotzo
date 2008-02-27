@@ -1,4 +1,4 @@
-(in-package :lotzo-commands)
+(in-package :lotzo)
 ;;user management
 ;;there are 5 user levels
 ;0=>user

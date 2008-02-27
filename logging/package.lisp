@@ -1,6 +1,5 @@
 (defpackage :lotzo-logging
-  (:use :cl :lotzo :lotzo-keywords
-        :lotzo-commands))
+  (:use :cl :lotzo))
 
 
 (in-package :lotzo-logging)

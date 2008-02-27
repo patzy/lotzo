@@ -1,6 +1,5 @@
 (defpackage :lotzo-apache
-  (:use :cl :lotzo :lotzo-keywords
-        :lotzo-commands))
+  (:use :cl :lotzo))
 
 
 (in-package :lotzo-apache)

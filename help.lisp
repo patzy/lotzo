@@ -1,6 +1,6 @@
 ;;help system
 
-(in-package :lotzo-commands)
+(in-package :lotzo)
 
 (defparameter *help-messages* (make-hash-table :test 'equal))
 

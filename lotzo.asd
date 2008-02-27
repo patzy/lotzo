@@ -17,17 +17,11 @@
                (:file "net")
                (:file "irc")
                (:file "lotzo")
-               (:module keywords
-                        :serial t
-                        :components ((:file "package")
-                                     (:file "keywords")))
-               (:module commands
-                        :serial t
-                        :components ((:file "package")
-                                     (:file "command-keyword")
-                                     (:file "users")
-                                     (:file "help")
-                                     (:file "commands")))
+               (:file "keywords")
+               (:file "commands-keyword")
+               (:file "users")
+               (:file "help")
+               (:file "commands")
                (:module notes
                         :serial t
                         :components ((:file "package")

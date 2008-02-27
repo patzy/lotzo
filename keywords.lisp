@@ -1,4 +1,4 @@
-(in-package :lotzo-keywords)
+(in-package :lotzo)
 
 ;;All registered parsers
 ;;One parser is a condition/action pair

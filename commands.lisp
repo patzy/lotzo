@@ -1,7 +1,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;commands
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(in-package :lotzo-commands)
+(in-package :lotzo)
 
 ;user_level
 (defcommand "level" ()

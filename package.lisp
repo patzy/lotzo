@@ -31,7 +31,28 @@
           ;;utils
           split-string
           format-date-string
+          ;;keywords
+          register-keyword
+          register-action
+          defkeyword
+          defaction
+          ;;commands
+          register-command
+          defcommand
+          command-args
+          defhelpmsg
+          register-help
+          add-user
+          set-auto-voice
+          unset-auto-voice
+          set-auto-op
+          unset-auto-op
+          set-auto-kick
+          unset-auto-kick
           ;;anaphoric macros
+          sentence
+          from
+          where
           prefix
           command
           middle

@@ -1,5 +1,5 @@
-;;Commands definitions
-(in-package :lotzo-commands)
+;;Commands keyword definitions
+(in-package :lotzo)
 
 ;;command prefix string
 (defvar *command-prefix-character* "!")
