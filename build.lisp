@@ -11,12 +11,11 @@
   (delete-file "lotzo"))
 
 (defun run ()
-  (lotzo:main-loop))
+  (lotzo:start))
 
 (defun make-lotzo ()
   (ext:saveinitmem "lotzo" :init-function (lambda ()
-                                            (lotzo:load-rc-file)
-                                            (lotzo:main-loop)
+                                            (lotzo:start)
                                             (ext:quit))
                             :executable t
                             :keep-global-handlers t

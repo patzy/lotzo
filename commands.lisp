@@ -38,7 +38,8 @@
 ;quit_order
 (defcommand "quit" (:min-level 5
                     :help-msg  "Tell the bot to disconnect")
-  (say where "Bye !"))
+  (say where "Bye !")
+  (stop))
 
 ;suspend_order
 (defcommand "suspend" (:min-level 5
@@ -46,11 +47,21 @@
   (say where "Entering suspend mode...(be carefull about connection timeout !)")
   (suspend) )
 
+
 ;loadrc_order
 (defcommand "loadrc" (:min-level 5
                     :help-msg  "Reload rc file")
   (say where "Reloading rc file...")
-  (load-rc-file))
+  (load-rc-file)
+  (say where "rc file loaded"))
+
+
+;reload_order
+(defcommand "reload" (:min-level 5
+                    :help-msg  "Reload all code")
+  (say where "Reloading ...")
+  (reload)
+  (say where "reload done"))
 
 ;status
 (defcommand "status" (:help-msg  "Print the bot current status")

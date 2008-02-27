@@ -159,6 +159,13 @@
   (quit-irc)
   (suspend))
 
+(defun start ()
+  (load-rc-file)
+  (main-loop))
+
+(defun reload ()
+  (asdf:operate 'asdf:load-op :lotzo))
+
 (defun main-loop ()
   "Main program loop read and eval input from irc calling
    the appropriate registered parsers"

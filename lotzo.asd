@@ -33,12 +33,12 @@
                (:module motd
                         :serial t
                         :components ((:file "package")
-                                     (:file "motd")))
-               (:module apache
-                        :serial t
-                        :components ((:file "package")
-                                     (:file "htaccess")))
-               (:module logging
-                        :serial t
-                        :components ((:file "package")
-                                     (:file "log")))))
+                                     (:file "motd")))))
+;;                (:module apache
+;;                         :serial t
+;;                         :components ((:file "package")
+;;                                      (:file "htaccess")))
+;;                (:module logging
+;;                         :serial t
+;;                         :components ((:file "package")
+;;                                      (:file "log")))))

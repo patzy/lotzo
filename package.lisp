@@ -7,10 +7,11 @@
 
 (export '(*nick*
           load-rc-file
+          reload
           suspend
           resume
           stop
-          main-loop
+          start
           ;;parser management
           register-parser
           defparser
