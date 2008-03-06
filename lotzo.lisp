@@ -166,6 +166,10 @@
 (defun reload ()
   (asdf:operate 'asdf:load-op :lotzo))
 
+(defun update ()
+  (ext:run-program "/usr/bin/git" :arguments '("pull")
+                                  :wait t))
+
 (defun main-loop ()
   "Main program loop read and eval input from irc calling
    the appropriate registered parsers"

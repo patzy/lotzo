@@ -66,6 +66,13 @@
   (reload)
   (say where "reload done"))
 
+;update_order
+(defcommand "update" (:min-level 5
+                    :help-msg  "Update all code using git pull")
+  (say where "Updating ...")
+  (update)
+  (say where "update done"))
+
 ;status
 (defcommand "status" (:help-msg  "Print the bot current status")
  (print-status where))
