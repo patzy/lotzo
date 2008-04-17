@@ -7,7 +7,7 @@
 ;;WARNING: this obviously doesn't work for hidden ip addresses
 ;;TODO: allow to associate a specific htaccess file to a specific channel
 ;;TODO: also add support for multiple websites
-(defvar *htaccess-filename* "/data/www/lotzo/.htaccess")
+(defvar *htaccess-filename* "/var/www/lotzo/.htaccess")
 
 
 ;;the list of allowed ip addresses

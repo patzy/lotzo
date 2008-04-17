@@ -4,6 +4,6 @@
 
 (in-package :lotzo-apache)
 
-(export '())
+(export '(*htaccess-filename*))
 
 
