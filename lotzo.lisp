@@ -8,8 +8,6 @@
 (defvar *irc-socket* 'nil)
 
 
-(defvar *rc-file* "~/.lotzorc")
-
 (defvar *channels* '("#lotzo"))
 (defvar *servers* '("irc.freenode.net"))
 (defvar *port* 6667)
