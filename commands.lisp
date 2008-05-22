@@ -23,7 +23,7 @@
                                (format nil "~{~A ~}" command-args)))
                         (error (c)
                                c)))))
-    (format t "Result: ~A~%" eval-result)))
+    (say where "~A" eval-result)))
 
 ;; ;list modules
 ;; (defcommand  "modules"
