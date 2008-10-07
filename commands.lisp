@@ -4,8 +4,7 @@
 (in-package :lotzo)
 
 ;user_level
-(defcommand "level" ()
-  "Print the user level"
+(defcommand "level" (:help-msg "Print the user rights level"
   (if (gethash from *allowed-users*)
       (say where (format nil "~A: Your level is ~A" from (get-user-level from)))
     (say where "You're not registered")))
@@ -142,16 +141,8 @@
   (say where (format nil "The following commands may require a specific user level to be executed"))
   (say where (format nil "All commands begin with '!'"))
   (say where (format nil "Commands:"))
-  (say where (format nil "level: show user level"))
-  (say where (format nil "eval _lisp_: evaluate the LISP expression _lisp_"))
-  (say where (format nil "quit: make the bot to disconnect"))
-  (say where (format nil "status: show the bot current status"))
-  (say where (format nil "op [nick]: set operator mode for the user or requested nick on the current channel"))
-  (say where (format nil "deop [nick]: unset operator mode for the user or requested nick on the current channel"))
-  (say where (format nil "voice [nick]: set voice mode for the user or requested nick on the current channel"))
-  (say where (format nil "devoice [nick]: unset voice mode for the user or requested nick on the current channel"))
-  (say where (format nil "kick [nick]: kick the user or requested nick on the current channel"))
-  (say where (format nil "join _chan_: make the bot to join the specified channel _chan_"))
+  (loop for c being the hash-key of *commands*
+       do (say where (format nil "~a" c)))
   (say where (format nil "=======================")))
 
 
