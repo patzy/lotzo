@@ -1,10 +1,6 @@
 (in-package :lotzo)
 
-;;All registered parsers
-;;One parser is a condition/action pair
 (defparameter *keywords* '())
-
-
 
 (defun register-keyword (keyword action)
   (push (cons keyword action) *keywords*))
@@ -19,7 +15,7 @@
       )))
 
 
-;;Call all matching keyword hooks
+;; Call all matching keyword hooks
 (defparser "PRIVMSG"
   (let (( nick (subseq prefix 1 (position #\! prefix))))
     (setf (car trailing) (string-left-trim ":" (car trailing)))

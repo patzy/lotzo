@@ -1,12 +1,4 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; IRC commands wrappers
-;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;;Defines some irc commands
-;;FIXME: add missing commands
-;;FIXME: add some sleep into say
-
+;; Defines some irc commands
 (in-package :lotzo)
 
 (defun quit-irc ()

@@ -1,4 +1,4 @@
-;;help system
+;; Simple help system
 
 (in-package :lotzo)
 

@@ -8,7 +8,7 @@
   :name "Lotzo"
   :author "Morgan Veyret <patzy@appart.kicks-ass.net>"
   :maintainer "Morgan Veyret <patzy@appart.kicks-ass.net>"
-  :license "BSD"
+  :license "MIT"
   :version "git"
   :description "An IRC bot written in Common Lisp"
   :serial t
@@ -18,6 +18,7 @@
                (:file "irc")
                (:file "lotzo")
                (:file "keywords")
+               ;; commands, help and user management
                (:file "commands-keyword")
                (:file "users")
                (:file "help")

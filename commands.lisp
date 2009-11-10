@@ -1,18 +1,10 @@
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;commands
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (in-package :lotzo)
 
-;user_level
-(defcommand "level" (:help-msg "Print the user rights level"
+(defcommand "level" (:help-msg "Print the user rights level")
   (if (gethash from *allowed-users*)
       (say where (format nil "~A: Your level is ~A" from (get-user-level from)))
     (say where "You're not registered")))
 
-
-;eval_order
-;;FIXME: this needs some teste and to be secured a bit more than with the
-;;FIXME: user level
 (defcommand  "eval" (:min-level 5
                      :help-msg  "Evaluate lisp code online")
   (format t "Code to eval: ~{ ~a~}~%" command-args)
@@ -24,59 +16,37 @@
                                c)))))
     (say where (format nil "~A" eval-result))))
 
-;; ;list modules
-;; (defcommand  "modules"
-;;   (:min-level 5
-;;    :help-msg   "Print the list of loaded modules")
-;;   (say where (format nil "Loaded modules: ~A~%" *lotzo-modules*)))
-
-;; ;;load module
-;; (defcommand  "load_module"
-;;   (:min-level 5
-;;    :help-msg "Tell the bot to load the specified module")
-;;   (use-module (read-from-string (first command-args)))
-;;   (say where (format nil "Loaded modules: ~A~%" *lotzo-modules*)))
-
-;quit_order
 (defcommand "quit" (:min-level 5
                     :help-msg  "Tell the bot to disconnect")
   (say where "Bye !")
   (stop))
 
-;suspend_order
 (defcommand "suspend" (:min-level 5
                     :help-msg  "Suspend the main loop")
   (say where "Entering suspend mode...(be carefull about connection timeout !)")
   (suspend) )
 
-
-;loadrc_order
 (defcommand "loadrc" (:min-level 5
                     :help-msg  "Reload rc file")
   (say where "Reloading rc file...")
   (load-rc-file)
   (say where "rc file loaded"))
 
-
-;reload_order
 (defcommand "reload" (:min-level 5
                     :help-msg  "Reload all code")
   (say where "Reloading ...")
   (reload)
   (say where "reload done"))
 
-;update_order
 (defcommand "update" (:min-level 5
                     :help-msg  "Update all code using git pull")
   (say where "Updating ...")
   (update)
   (say where "update done"))
 
-;status
 (defcommand "status" (:help-msg  "Print the bot current status")
  (print-status where))
 
-;voice
 (defcommand "voice" (:min-level 4
                      :help-msg  "Ask the bot to give voice status")
   (if (= 0 (length command-args))
@@ -85,7 +55,6 @@
               (voice current-user where))
             command-args)))
 
-;devoice
 (defcommand "devoice" (:min-level 4
                        :help-msg   "Tell the bot to remove voice status")
   (if (= 0 (length command-args))
@@ -94,7 +63,6 @@
               (devoice current-user where))
             command-args)))
 
-;op
 (defcommand "op" (:min-level 4
                   :help-msg   "Ask the bot to give operator status")
   (if (= 0 (length command-args))
@@ -103,8 +71,6 @@
               (op current-user where))
             command-args)))
 
-
-;deop
 (defcommand "deop"(:min-level 4
                    :help-msg "Tell the bot to remove operator status")
   (if (= 0 (length command-args))
@@ -113,19 +79,14 @@
               (deop current-user where))
             command-args)))
 
-
-
-;kick
 (defcommand "kick" (:min-level 4
                     :help-msg "Tell the bot to kick the specified users")
   (if (= 0 (length command-args))
       (kick from where)
     (mapcar (lambda (current-user)
               (kick current-user where))
-            command-args))) 
+            command-args)))
 
-
-;join
 (defcommand "join" (:min-level 5
                     :help-msg "Tell the bot to join the specified channels")
   (if (not (= 0 (length command-args)))
@@ -133,17 +94,6 @@
                 (join current-chan))
               command-args)
     (say from "You must provide one or more channels to join")))
-
-
-;;Module help message
-(defhelpmsg "commands-module"
-  (say where (format nil "===Help for commands==="))
-  (say where (format nil "The following commands may require a specific user level to be executed"))
-  (say where (format nil "All commands begin with '!'"))
-  (say where (format nil "Commands:"))
-  (loop for c being the hash-key of *commands*
-       do (say where (format nil "~a" c)))
-  (say where (format nil "=======================")))
 
 
 

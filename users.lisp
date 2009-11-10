@@ -1,12 +1,7 @@
 (in-package :lotzo)
-;;user management
-;;there are 5 user levels
-;0=>user
-;1=>none
-;2=>none
-;3=>trusted user
-;4=>friend
-;5=>super-user (admin)
+
+;; Bad user management (nick-based)
+
 (defstruct user
   (level 0)
   (auto-op? 'nil)
@@ -77,7 +72,7 @@
 
 
 
-;;On join we auto-op auto-voice known users
+;; On join we auto-op auto-voice known users
 (defparser "JOIN"
   (let ((nick (subseq prefix 1 (position #\! prefix)))
         (channel (string-left-trim ":" middle)))
@@ -88,7 +83,7 @@
 
 
 
-;;Nick following to track users even if they changes their names !!!
+;; Nick following to track users even if they changes their names !!!
 (defparser "NICK"
   (let ((old-nick (subseq prefix 1 (position #\! prefix)))
         (new-nick (string-left-trim ":" middle)))

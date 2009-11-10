@@ -1,11 +1,11 @@
 (in-package :lotzo)
 
 
-(defvar *authenticated* 'nil)
-(defvar *operator* 'nil)
-(defvar *connected* 'nil)
+(defvar *authenticated* nil)
+(defvar *operator* nil)
+(defvar *connected* nil)
 
-(defvar *irc-socket* 'nil)
+(defvar *irc-socket* nil)
 
 
 (defvar *channels* '("#lotzo"))
@@ -17,9 +17,8 @@
 
 
 
-;;Parsers ----------------------------------------------------------------------
-;;Those are hooks run when a specific IRC command is received
-;;You can have multiple hooks for one command
+;; Hooks run when a specific IRC command is received
+;; You can have multiple hooks for one command
 (defparameter *parsers* (make-hash-table :test 'equal))
 
 
@@ -35,7 +34,6 @@
     ,command))
 
 
-;;default MODE parser
 (defparser "MODE"
   (setq nick (subseq prefix 1 (position #\! prefix)))
   (if (and (string-equal (first trailing) "-o")
@@ -55,7 +53,6 @@
                      *channels*))))
 
 (defparser "372"
-  (format t "Parsing 372 command~%")
   (format t "MOTD: ~A~%" trailing))
 
 (defparser "JOIN"
@@ -65,8 +62,8 @@
       (format t "I have joined ~A~%" middle)
       (say channel *channel-join-msg*))))
 
-;;parse an irc string into its three
-;;parts
+;; parse and split an incoming irc string into
+;; parts: prefix, command, middle and trailing
 (defun parse-irc (string)
   ;;prefix(optional) command middle trailing(optional)
   (let* ((splited-msg (split-string *reply* #\Space))
@@ -78,12 +75,6 @@
          (nick (when prefix
                  (subseq prefix 1
                          (position #\! prefix)))))
-    (format t "Prefix:~S~%" prefix)
-    (format t "Command:~S~%" command)
-    (format t "Middle:~S~%" middle)
-    (format t "Trailing:~S~%" trailing)
-
-    (format t "Calling registered parsers~%")
 
     ;;Call all registered parsers
     (if (gethash command *parsers*)
@@ -93,7 +84,7 @@
 
 (defun read-input (stream)
   (setq *reply* (receive stream)))
-                                        ;(format t "Received:~S~%" *reply*))
+
 
 (defun eval-input ()
   (format t "irc input: ~A~%" *reply*)
@@ -134,7 +125,6 @@
   (format t "Connected~%"))
 
 (defun load-rc-file ()
-  "Load rc file"
   (let ((rc (probe-file (merge-pathnames (user-homedir-pathname)
                                           #p".lotzorc"))))
     (when rc
@@ -143,17 +133,15 @@
       (format t "Server list: ~a~%" *servers*))))
 
 (defvar *lotzo-running* t)
+
 (defun suspend ()
-  "Suspend main loop."
   (setf *lotzo-running* nil))
 
 (defun resume ()
-  "Resume main loop."
   (setf *lotzo-running* t)
   (main-loop))
 
 (defun stop ()
-  "Stop the bot."
   (quit-irc)
   (suspend))
 
@@ -164,13 +152,7 @@
 (defun reload ()
   (asdf:operate 'asdf:load-op :lotzo))
 
-(defun update ()
-  (ext:run-program "/usr/bin/git" :arguments '("pull")
-                                  :wait t))
-
 (defun main-loop ()
-  "Main program loop read and eval input from irc calling
-   the appropriate registered parsers"
   (loop while *lotzo-running*
         do (progn (if *connected*
                       (progn (read-input *irc-socket*)

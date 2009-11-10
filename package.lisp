@@ -1,4 +1,4 @@
-;;Lotzo package definition
+;;;; Lotzo package definition
 (defpackage :lotzo
   (:use :cl))
 
@@ -12,10 +12,10 @@
           resume
           stop
           start
-          ;;parser management
+          ;; parser management
           register-parser
           defparser
-          ;;irc commands
+          ;; irc commands
           quit-irc
           say
           action
@@ -29,15 +29,15 @@
           users
           join
           topic
-          ;;utils
+          ;; utils
           split-string
           format-date-string
-          ;;keywords
+          ;; keywords system
           register-keyword
           register-action
           defkeyword
           defaction
-          ;;commands
+          ;; for commands
           register-command
           defcommand
           command-args
@@ -50,7 +50,7 @@
           unset-auto-op
           set-auto-kick
           unset-auto-kick
-          ;;anaphoric macros
+          ;; for anaphoric macros
           sentence
           from
           where

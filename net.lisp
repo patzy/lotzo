@@ -1,6 +1,5 @@
-;;Network code
-;;TODO: add support for other implementations
-;;TODO: for now it only works with clisp
+;; Network code
+;; XXX: only works with clisp
 (in-package :lotzo)
 
 
