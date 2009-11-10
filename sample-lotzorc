@@ -6,72 +6,12 @@
 
 
 ;;global parameters
-(setf *servers* '("Montreal.QC.CA.Undernet.org"
-                  "Amsterdam.NL.EU.undernet.org"
-                  "Amsterdam2.NL.EU.undernet.org"
-                  "bucharest.ro.eu.undernet.org"
-                  "Carouge.CH.EU.Undernet.org"
-                  "Diemen.NL.EU.Undernet.Org"
-                  "Ede.NL.EU.UnderNet.Org"
-                  "Elsene.Be.Eu.undernet.org"
-                  "graz.at.Eu.UnderNet.org"
-                  "Helsinki.FI.EU.Undernet.org"
-                  "Lelystad.NL.EU.UnderNet.Org"
-                  "London2.UK.EU.Undernet.Org"
-                  "Oslo2.NO.EU.undernet.org"
-                  "Zagreb.Hr.EU.UnderNet.org"
-                  "mesa.az.us.undernet.org"
-                  "newyork.ny.us.undernet.org"
-                  "sanjose.ca.us.undernet.org"
-                  "Sterling.VA.US.UnderNet.org"))
 (setf *servers* '("irc.freenode.net"))
 (setf *nick* "Lotzo")
-(setf *channels* '("#stumpwm"))
+(setf *channels* '("#lotzo"))
 (setf *channel-join-msg* "Kenavo les bouseux !!!")
-
-;;users rights
-(add-user "Patzy" 5)
-(set-auto-voice "Patzy")
-(add-user "Tagada" 4)
-(set-auto-voice "Tagada")
-(add-user "Sc0TTY" 4)
-(set-auto-voice "Sc0TTY")
-(add-user "Tich" 4)
-(set-auto-voice "Tich")
-(add-user "pluchon" 4)
-(set-auto-voice "pluchon")
-(add-user "lt_west" 4)
-(set-auto-voice "lt_west")
-(add-user "astroboy" 4)
-(set-auto-voice "astroboy")
-(add-user "hopi" 4)
-(set-auto-voice "hopi")
-(add-user "d00by" 4)
-(set-auto-voice "d00by")
-(add-user "BoB[ViV]" 4)
-(set-auto-voice "BoB[ViV]")
-(add-user "minipen" 4)
-(set-auto-voice "minipen" )
-(add-user "Gluk" 4)
-(set-auto-voice "Gluk")
-(add-user "roms" 4)
-(set-auto-voice "roms")
-(add-user "mycose" 4)
-(set-auto-voice "mycose")
-(add-user "Nawer" 4)
-(set-auto-voice "Nawer")
-(add-user "kenavo" 4)
-(set-auto-voice "kenavo")
-(add-user "mirak" 4)
-(set-auto-voice "mirak")
 
 
 ;help messages
-(defhelpmsg "torrent"
-  (say where "Bittorrent est un systeme de DL p2p")
-  (say where "Contrairement a emule etc il n'y a pas de systeme de recherche et il faut passer par des site (mininova, isohunt etc) pour trouver les fichiers .torrent")
-  (say where "Il faut  également un client (bittorrent,bittornado,azureus,abc,...) dans lequel  mettre les fichiers .torrent que l'on a telechargés")
-  (say where "Le gros avantage est que l'on a pas besoin de mettre en partage une grande quantité de données mais uniquement ce que l'on telecharge a un moment précis"))
-
-(defhelpmsg "wiki"
-  (say where "Le wiki est disponible ici: http://monclair.fr/glute/doku.php"))
+(defhelpmsg "lotzo"
+  (say where "Lotzo is a simple CL IRC bot. Me ...."))
