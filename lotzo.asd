@@ -6,8 +6,6 @@
 
 (defsystem :lotzo
   :name "Lotzo"
-  :author "Morgan Veyret <patzy@appart.kicks-ass.net>"
-  :maintainer "Morgan Veyret <patzy@appart.kicks-ass.net>"
   :license "MIT"
   :version "git"
   :description "An IRC bot written in Common Lisp"
