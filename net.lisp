@@ -6,7 +6,7 @@
 (defun connect (server port)
   "Connect to the specified server and port."
   (handler-case (socket:socket-connect port server
-                                       :element-type 'character :timeout 1)
+                                       :element-type 'character)
                 (error () 'nil)))
 
 
